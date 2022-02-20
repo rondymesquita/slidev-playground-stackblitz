@@ -1,50 +1,36 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-// const fetch = (url) => {
-//   console.log('>>> called', url)
-// 	return new Promise((resolve, reject) => {
-// 	https.get(url, (resp) => {
-
-// 			let data = '';
-
-// 			resp.on('data', (chunk) => {
-// 				data += chunk;
-// 			});
-// 			resp.on('end', () => {
-// 				console.log(data);
-//         resolve('DONE')
-// 				// resolve(JSON.parse(data))
-// 			});
-
-// 		}).on("error", (err) => {
-// 			reject(err)
-// 		});
-// 	})
-// }
+import Prism from 'prismjs'
 
 const props = defineProps({
   path: {
-    default: null,
+    default: null, 
   },
 })
 
-const data = ref("")
+const data = ref("asd")
 
 console.log('>>>', props)
-fetch("/" + props.path)
+fetch(props.path)
 .then(result => result.text())
 .then((result) => {
-  let f = result
-  console.log(f)
-  data.value = f
+  let f = result.trim()
+  console.log('>>', f)
+
+
+  let highlighted = Prism.highlight(f, Prism.languages.javascript, 'typescript');
+
+  console.log(highlighted)
+  data.value = highlighted
+
+
 })
 </script>
 
 <template>
   <div flex="~" w="min" border="~ gray-400 opacity-50 rounded-md">
-    <pre>
-      {{data}}
-    </pre>
+    <!-- <pre class="language-ts">{{data}}</pre> -->
+    <div v-html="data" class="language-ts"></div>
   </div>
 </template>
