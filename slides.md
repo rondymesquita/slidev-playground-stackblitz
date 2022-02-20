@@ -21,15 +21,7 @@ drawings:
   persist: false
 ---
 
-# Teste
-
----
-
-# slide
-
----
-
-<Counter path="test.ts" />
+<Counter path="test.ts.txt" />
 
 ---
 

@@ -4,7 +4,6 @@ import Components from 'unplugin-vue-components/vite'
 export default defineConfig({
   slidev: {
     vue: {
-      /* vue options */
     },
     markdown: {
       /* markdown-it options */
@@ -15,9 +14,4 @@ export default defineConfig({
     },
     /* options for other plugins */
   },
-  plugins: [
-    Components({
-      exclude: [/code\/.*.ts$/],
-    })
-  ]
 })

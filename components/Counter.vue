@@ -1,7 +1,21 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-
 import Prism from 'prismjs'
+
+
+const myfetch = (url) => {
+  return new Promise((res) => {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        res(this.responseText)
+        // document.getElementById("demo").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send();
+  })
+}
 
 const props = defineProps({
   path: {
@@ -11,8 +25,8 @@ const props = defineProps({
 
 const data = ref("asd")
 
-console.log('>>>', props)
-fetch('code/' + props.path)
+// console.log('>>>', props)
+fetch('./code/' + props.path)
 .then(result => {
   console.log(result)
   return result.text()
