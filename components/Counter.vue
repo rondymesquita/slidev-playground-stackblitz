@@ -12,16 +12,19 @@ const props = defineProps({
 const data = ref("asd")
 
 console.log('>>>', props)
-fetch(props.path)
-.then(result => result.text())
-.then((result) => {
-  let f = result.trim()
-  console.log('>>', f)
+fetch('code/' + props.path)
+.then(result => {
+  console.log(result)
+  return result.text()
+})
+.then(async(result) => {
+  let f = result
+  // console.log('>>', props.path, f)
 
 
   let highlighted = Prism.highlight(f, Prism.languages.javascript, 'typescript');
 
-  console.log(highlighted)
+  // console.log(highlighted)
   data.value = highlighted
 
 
