@@ -1,4 +1,8 @@
-class Greeter {
+interface Greeter {
+  greet(): void
+}
+
+class Greet implements Greeter{
   greeting: string;
  
   constructor(message: string) {
@@ -10,4 +14,4 @@ class Greeter {
   }
 }
  
-let greeter = new Greeter("world");
+let greet = new Greet("world");

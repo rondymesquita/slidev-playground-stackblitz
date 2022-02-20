@@ -21,6 +21,6 @@ drawings:
   persist: false
 ---
 
-<Counter path="test.ts.txt" />
+<Counter path="test.ts" />
 
 ---
