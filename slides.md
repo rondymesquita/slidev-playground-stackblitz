@@ -20,4 +20,5 @@ drawings:
   persist: false
 ---
 
-<Counter path="test.ts" />
+<!-- # Hello -->
+<Importer path="test" />

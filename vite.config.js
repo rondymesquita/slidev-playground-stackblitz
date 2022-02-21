@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+const rawPlugin = require('vite-raw-plugin')
 
 export default defineConfig({
   slidev: {
@@ -9,7 +10,17 @@ export default defineConfig({
       }
     }
   },
-  esbuild: {
-    exclude: ["code/**/*"]
-  }
+  // plugins: [
+  //   rawPlugin({
+  //     // fileRegex: /\.md$/
+  //     fileRegex: /sample\/.*\.ts$/
+  //   })
+  // ],
+  // assetsInclude: ['components/code/*/*.ts']
+  // optimizeDeps: {
+  //   exclude: ["components/code/*"]
+  // }
+  // esbuild: {
+  //   exclude: ["sample/*.ts"]
+  // }
 })
