@@ -21,4 +21,4 @@ drawings:
 ---
 
 <!-- # Hello -->
-<Importer path="test" />
+<CodeRender filename="test.ts" syntax="javascript"/>

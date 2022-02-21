@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "slidev",
-    "build": "slidev build",
+    "build": "slidev build && node rename-code-assets.js",
     "export": "slidev export"
   },
   "dependencies": {
