@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, nextTick } from "vue";
 import Prism from "prismjs";
+import "prismjs/themes/prism.css";
+import "prismjs/plugins/line-numbers/prism-line-numbers";
+import "prismjs/plugins/line-numbers/prism-line-numbers.css";
+import "prismjs/components/prism-typescript";
 
 const props = defineProps({
   filename: {
@@ -13,30 +17,34 @@ const props = defineProps({
 
 const { filename, syntax } = props;
 
-const data = ref("CODE NOT LOADED");
-const raw = ref("CODE NOT LOADED");
+const code = ref("CODE NOT LOADED");
+const codeElement = ref();
 
-const createHighlightedCodeInHTML = (rawCode) => {
-  console.log(Object.keys(Prism.languages));
-  let highlighted = Prism.highlight(rawCode, Prism.languages[syntax]);
-  return highlighted;
-};
-
+// @ts-ignore
 const path = import.meta.env.DEV
   ? `../public/code/${filename}`
   : `/code/${filename}.txt`;
 
+Prism.manual = true;
+
 fetch(path)
   .then((response) => response.text())
-  .then((response) => {
-    const codeInHTML = createHighlightedCodeInHTML(response);
-    data.value = codeInHTML;
-    raw.value = response;
+  .then((codeAsString) => {
+    code.value = codeAsString;
+    nextTick(() => {
+      Prism.highlightElement(codeElement.value);
+    });
   });
 </script>
 
 <template>
-  <div border="~ gray-400 opacity-50 rounded-md">
-    <div v-html="data" class="language-ts line-numbers"></div>
+  <div>
+    <pre
+      ref="preElement"
+      class="line-numbers"
+    ><code ref='codeElement' class='language-js'>{{code}}</code></pre>
   </div>
 </template>
+
+<style scoped>
+</style>
